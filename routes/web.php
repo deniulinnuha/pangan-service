@@ -20,3 +20,7 @@ $router->get('/user/{id}', ['middleware' => 'auth', 'uses' =>  'UserController@g
 $router->get('/user/detail/{id}', ['middleware' => 'auth', 'uses' =>  'UserController@getDetail']);
 $router->put('/user/detail/update/{id}', ['middleware' => 'auth', 'uses' =>  'UserController@updateDetail']);
 $router->post('/user/detail/create/{id}', ['middleware' => 'auth', 'uses' =>  'UserController@createDetail']);
+$router->get('/category', ['middleware' => 'auth', 'uses' =>  'CategoriesController@index']);
+$router->post('/category', ['middleware' => 'auth', 'uses' =>  'CategoriesController@createCategories']);
+$router->put('/category/{id}', ['middleware' => 'auth', 'uses' =>  'CategoriesController@updateCategories']);
+$router->delete('/category/{id}', ['middleware' => 'auth', 'uses' =>  'CategoriesController@deleteCategories']);
