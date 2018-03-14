@@ -24,3 +24,7 @@ $router->get('/category', ['middleware' => 'auth', 'uses' =>  'CategoriesControl
 $router->post('/category', ['middleware' => 'auth', 'uses' =>  'CategoriesController@createCategories']);
 $router->put('/category/{id}', ['middleware' => 'auth', 'uses' =>  'CategoriesController@updateCategories']);
 $router->delete('/category/{id}', ['middleware' => 'auth', 'uses' =>  'CategoriesController@deleteCategories']);
+$router->get('/warehouse', ['middleware' => 'auth', 'uses' =>  'WarehouseController@index']);
+$router->post('/warehouse', ['middleware' => 'auth', 'uses' =>  'WarehouseController@createWarehouse']);
+$router->put('/warehouse/{id}', ['middleware' => 'auth', 'uses' =>  'WarehouseController@updateWarehouse']);
+$router->delete('/warehouse/{id}', ['middleware' => 'auth', 'uses' =>  'WarehouseController@deleteWarehouse']);
