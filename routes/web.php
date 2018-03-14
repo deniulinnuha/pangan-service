@@ -17,3 +17,6 @@ $router->get('/', function () use ($router) {
 $router->post('/login', 'LoginController@index');
 $router->post('/register', 'UserController@register');
 $router->get('/user/{id}', ['middleware' => 'auth', 'uses' =>  'UserController@getUser']);
+$router->get('/user/detail/{id}', ['middleware' => 'auth', 'uses' =>  'UserController@getDetail']);
+$router->put('/user/detail/update/{id}', ['middleware' => 'auth', 'uses' =>  'UserController@updateDetail']);
+$router->post('/user/detail/create/{id}', ['middleware' => 'auth', 'uses' =>  'UserController@createDetail']);

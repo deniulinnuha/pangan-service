@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
+use DB;
 class UserController extends Controller
 {
     /**
@@ -39,7 +40,12 @@ class UserController extends Controller
      */
     public function getUser(Request $request, $id)
     {
-        $user = User::where('id', $id)->get();
+        $token = $request->input('api_token');
+        // print_r($token);exit;
+        $user = User::where([
+            ['id', '=',$id],
+            ['api_token','=',$token]
+            ])->get();
         if ($user) {
               $res['success'] = true;
               $res['message'] = $user;
@@ -50,6 +56,44 @@ class UserController extends Controller
           $res['message'] = 'Cannot find user!';
         
           return response($res);
+        }
+    }
+
+    public function getDetail(Request $request, $id){
+        $users = DB::table('user_details')->where('id_user', '=', $id)->get();  
+        if ($users) {
+            $res['success'] = true;
+            $res['message'] = $users;
+      
+            return response($res);
+        }else{
+            $res['success'] = false;
+            $res['message'] = 'Please complete your data!';
+        
+            return response($res);
+        }
+    }
+
+    public function updateDetail(Request $request, $id){
+        $input = $request->all();
+        $input = $request->except('api_token');
+        $input['id_user'] = $id;
+        $users = DB::table('user_details')->where('id_user', $id)->first();
+        // dd($input);
+        if ($users === NULL) {
+            $create = DB::table('user_details')->insert($input);
+            
+            $res['success'] = true;
+            $res['message'] = 'Data saved!';
+            
+            return response($res);
+        }else{
+            $update = DB::table('user_details')
+            ->where('id_user', $id)
+            ->update($input);
+            $res = DB::table('user_details')->where('id_user', '=', $id)->get();
+            
+            return response($res);
         }
     }
 }
