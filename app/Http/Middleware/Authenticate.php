@@ -39,7 +39,7 @@ class Authenticate
             if ($request->has('api_token')) {
                 $token = $request->input('api_token');
                 $check_token = User::where('api_token', $token)->first();
-                if ($check_token == null) {
+                if ($check_token === null) {
                     $res['success'] = false;
                     $res['message'] = 'Permission not allowed!';
 
