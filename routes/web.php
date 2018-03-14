@@ -24,3 +24,7 @@ $router->get('/category', ['middleware' => 'auth', 'uses' =>  'CategoriesControl
 $router->post('/category', ['middleware' => 'auth', 'uses' =>  'CategoriesController@createCategories']);
 $router->put('/category/{id}', ['middleware' => 'auth', 'uses' =>  'CategoriesController@updateCategories']);
 $router->delete('/category/{id}', ['middleware' => 'auth', 'uses' =>  'CategoriesController@deleteCategories']);
+$router->get('/comodities', ['middleware' => 'auth', 'uses' =>  'ComoditiesController@index']);
+$router->post('/comodities', ['middleware' => 'auth', 'uses' =>  'ComoditiesController@createComodities']);
+$router->put('/comodities/{id}', ['middleware' => 'auth', 'uses' =>  'ComoditiesController@updateComodities']);
+$router->delete('/comodities/{id}', ['middleware' => 'auth', 'uses' =>  'ComoditiesController@deleteComodities']);
