@@ -18,10 +18,10 @@ class UserController extends Controller
         $id_role = $request->input('id_role');
         $password = $hasher->make($request->input('password'));
         $register = User::create([
-            'username'=> $username,
             'email'=> $email,
             'password'=> $password,
-            'id_role'=> $id_role,
+            'id_role'=> $id_role,   
+            'username'=> $username
         ]);
         if ($register) {
             $res['success'] = true;
@@ -43,22 +43,16 @@ class UserController extends Controller
         $token = $request->input('api_token');
         // print_r($token);exit;
         $user = User::where([
-            ['id', '=',$id],
-            ['api_token','=',$token]
+            ['id', '=',$id]
             ])->get();
-        if ($user) {
-              $res['success'] = true;
-              $res['message'] = $user;
-        
-              return response($res);
-        }else{
-          $res['success'] = false;
-          $res['message'] = 'Cannot find user!';
-        
-          return response($res);
-        }
+        return $user;
     }
 
+    public function getAll(){
+        $user = DB::table('users')->get();
+
+        return $user;
+    }
     public function getDetail(Request $request, $id){
         $users = DB::table('user_details')->where('id_user', '=', $id)->get();  
         if ($users) {

@@ -16,22 +16,25 @@ $router->get('/', function () use ($router) {
 });
 $router->post('/login', 'LoginController@index');
 $router->post('/register', 'UserController@register');
-$router->get('/user/{id}', ['middleware' => 'auth', 'uses' =>  'UserController@getUser']);
+$router->get('/user', 'UserController@getAll');
+$router->get('/user/{id}', 'UserController@getUser');
+$router->put('/user/{id}', 'UserController@updateUser');
 $router->get('/user/detail/{id}', ['middleware' => 'auth', 'uses' =>  'UserController@getDetail']);
 $router->put('/user/detail/update/{id}', ['middleware' => 'auth', 'uses' =>  'UserController@updateDetail']);
 $router->post('/user/detail/create/{id}', ['middleware' => 'auth', 'uses' =>  'UserController@createDetail']);
-$router->get('/category', ['middleware' => 'auth', 'uses' =>  'CategoriesController@index']);
-$router->post('/category', ['middleware' => 'auth', 'uses' =>  'CategoriesController@createCategories']);
-$router->put('/category/{id}', ['middleware' => 'auth', 'uses' =>  'CategoriesController@updateCategories']);
-$router->delete('/category/{id}', ['middleware' => 'auth', 'uses' =>  'CategoriesController@deleteCategories']);
-<<<<<<< HEAD
-$router->get('/warehouse', ['middleware' => 'auth', 'uses' =>  'WarehouseController@index']);
-$router->post('/warehouse', ['middleware' => 'auth', 'uses' =>  'WarehouseController@createWarehouse']);
-$router->put('/warehouse/{id}', ['middleware' => 'auth', 'uses' =>  'WarehouseController@updateWarehouse']);
-$router->delete('/warehouse/{id}', ['middleware' => 'auth', 'uses' =>  'WarehouseController@deleteWarehouse']);
-=======
-$router->get('/comodities', ['middleware' => 'auth', 'uses' =>  'ComoditiesController@index']);
-$router->post('/comodities', ['middleware' => 'auth', 'uses' =>  'ComoditiesController@createComodities']);
-$router->put('/comodities/{id}', ['middleware' => 'auth', 'uses' =>  'ComoditiesController@updateComodities']);
-$router->delete('/comodities/{id}', ['middleware' => 'auth', 'uses' =>  'ComoditiesController@deleteComodities']);
->>>>>>> master
+$router->get('/category', 'CategoriesController@index');
+$router->get('/category/{id}', 'CategoriesController@getCategories');
+$router->post('/category', 'CategoriesController@createCategories');
+$router->put('/category/{id}', 'CategoriesController@updateCategories');
+$router->delete('/category/{id}', 'CategoriesController@deleteCategories');
+$router->get('/warehouse', 'WarehouseController@index');
+$router->get('/warehouse/{id}', 'WarehouseController@getWarehouse');
+$router->get('/warehouse/byuser/{id}', 'WarehouseController@getWarehousebyUser');
+$router->post('/warehouse', 'WarehouseController@createWarehouse');
+$router->put('/warehouse/{id}', 'WarehouseController@updateWarehouse');
+$router->delete('/warehouse/{id}', 'WarehouseController@deleteWarehouse');
+$router->get('/comodities/{id}', 'ComoditiesController@index');
+$router->post('/comodities', 'ComoditiesController@createComodities');
+$router->put('/comodities/{id}', 'ComoditiesController@updateComodities');
+$router->delete('/comodities/{id}', 'ComoditiesController@deleteComodities');
+$router->get('/comodities/edit/{id}', 'ComoditiesController@getComodities');

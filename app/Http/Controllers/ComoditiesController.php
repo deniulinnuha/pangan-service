@@ -10,8 +10,14 @@ class ComoditiesController extends Controller
      *
      * @param $request Request
      */
-    public function index(){
-        $cate = DB::table('comodities')->get();
+    public function index($id){
+        $cate = DB::table('comodities')->where('id_categories', $id)->get();
+
+        return $cate;
+    }
+
+    public function getComodities($id){
+        $cate = DB::table('comodities')->where('id', $id)->get();
 
         return $cate;
     }

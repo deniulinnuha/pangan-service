@@ -16,6 +16,12 @@ class CategoriesController extends Controller
         return $cate;
     }
 
+    public function getCategories($id){
+        $cate = DB::table('categories')->where('id', $id)->get();
+
+        return $cate;
+    }
+
     public function createCategories(Request $request){
         $input = $request->except('api_token');
         // print_r($token);exit;

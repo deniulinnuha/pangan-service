@@ -11,7 +11,29 @@ class WarehouseController extends Controller
      * @param $request Request
      */
     public function index(){
-        $cate = DB::table('warehouse')->get();
+        $cate = DB::table('warehouse')
+                ->join('comodities', 'comodities.id', '=', 'warehouse.id_comodities')
+                ->join('users', 'users.id', '=', 'warehouse.id_user')
+                ->select('warehouse.*','users.username','comodities.name')
+                ->get();
+
+        return $cate;
+    }
+
+    public function getWarehouse($id){
+        $cate = DB::table('warehouse')
+                ->where('id', $id)
+                ->get();
+
+        return $cate;
+    }
+
+    public function getWarehousebyUser($id){
+        $cate = DB::table('warehouse')
+                ->join('comodities', 'comodities.id', '=', 'warehouse.id_comodities')
+                ->select('warehouse.*','comodities.name')
+                ->where('id_user', $id)
+                ->get();
 
         return $cate;
     }
@@ -49,10 +71,15 @@ class WarehouseController extends Controller
     }
 
     public function updateWarehouse(Request $request, $id){
-        $input = $request->except('api_token');
+        $input = $request->all();
+        // dd($request->all());
         $update = DB::table('warehouse')
-            ->where('id', $id)
-            ->update($input);
+                ->where('id', $id)
+                ->update([
+                    'stock' => $input['stock'],
+                    'id_user' => $input['id_user'],
+                    'id_comodities' => $input['id_comodities']
+                    ]);
         $res = DB::table('warehouse')->where('id', '=', $id)->get();
       
         return response($res);
