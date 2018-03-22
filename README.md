@@ -50,4 +50,6 @@ Pangan service merupakan Sistem Informasi guna memperoleh data ketersediaan pang
 
 - buka http://localhost:8080/graphiql? kamu bisa akses query lewat interface GraphiQL 
 
-![Imgur](https://i.imgur.com/UI7NXiI.gifv)
+![Imgur](https://i.imgur.com/UI7NXiI.gif)
+
+[License](https://github.com/hudabikhoir/pangan-service/blob/master/LICENSE.md) Pangan Service
